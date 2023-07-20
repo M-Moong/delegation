@@ -83,6 +83,7 @@ navigation.addEventListener('click', handleSlider);
 
 
 
+
 //* 요구 사항
 //* 1. 내가 선택한 li에게 is-active 클래스를 넣어주세요 
 //* 2. 내가 선택하지 않은(모든 li) li에게 is-active 클래스 제거해주세요 

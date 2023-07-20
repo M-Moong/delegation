@@ -21,3 +21,45 @@ const data = [
   },
 ];
 
+
+
+
+
+
+
+
+
+const swiper = new Swiper(".swiper", {
+  autoplay: {
+    disableOnInteraction: false,
+  },
+  loop: true,
+  speed: 2000,
+  parallax: true,
+  pagination: {
+    el: ".pagination",
+    clickable: true,
+    bulletClass: "bullet",
+    bulletActiveClass: "is-active",
+    renderBullet: function (index, className) {
+      return /* html */ `
+        <span class="${className}">
+          <img src="./assets/part01/${data[index].src}" alt="" />
+        </span>
+      `;
+    },
+  },
+});
+
+const title = document.querySelector('h3');
+
+
+
+swiper.on('slideChange', function (e) {
+  // console.log(e.realIndex);
+  title.classList.remove("is-active");
+}).on('slideChangeTransitionEnd', function(e){
+  // console.log('슬라이드 애니메이션 끝 !');
+  title.classList.add('is-active');
+})
+
