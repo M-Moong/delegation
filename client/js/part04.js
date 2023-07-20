@@ -5,6 +5,7 @@
 
 const contents = getNode('.contents');
 const textField = getNode('#comment37');
+const commentContainer = getNode(".comment_container");
 
 // 누른 대상을 찾기
 // 누른 대상의 data-name 값 찾기
@@ -24,6 +25,24 @@ function createComment(user, value) {
 	return template;
 }
 
+// 스크롤을 계속 아래로 내려주는 함수
+function endScroll(target) {
+	target.scrollTop = target.scrollHeight;
+	return target.scrollHeight;
+}
+
+// input 창의 내용들을 지워주기 위한 함수
+// 댓글을 작성하고 남은 텍스트들
+function clearContents(target) {
+
+	if (target.nodeName === 'INPUT' || target.nodeName == 'TEXTAREA') {
+		
+		target.value = ''
+		return;
+	}
+
+	target.textContent = '';
+}
 
 
 
@@ -56,34 +75,16 @@ const handleArticle = (e) => {
 		e.preventDefault();
 
 		let value = textField.value;
-		console.log(value);
 
 		if (value === '') return;
 
-		
+		insertLast(commentContainer, createComment("범범", value));
 
-		insertLast(".comment_container", createComment('범범', value));
+		endScroll(commentContainer);
 
-		value = '';
-
-		textField.value = '';
-
-
-
-
+		clearContents(textField);
 	}
-	
-
-
 }
-
-
-
-
-
-
-
-
 
 contents.addEventListener('click',handleArticle)
 
